@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.16 - 2026-11-03
+
+- Move the repository to the `BITRATE-Labs` GitHub organization. Old `github.com/BASIC-BIT/vrchat-mcp` links redirect. The npm package name `@basicbit/vrchat-mcp` is unchanged.
+- Publish to the official MCP Registry as `io.github.BITRATE-Labs/vrchat-mcp`. The registry ties a server name to its GitHub owner, so the old `io.github.BASIC-BIT/vrchat-mcp` entry is deprecated with a pointer to the new name. Update any registry-based configuration to the new name.
+- Advertise the `resources.subscribe` capability so clients with strict capability checks accept resource subscriptions (#120).
+
 ## 0.1.15 - 2026-09-11
 
 - Add opt-in headless re-login for bot accounts that use TOTP two-factor authentication. When `VRCHAT_MCP_USERNAME`, `VRCHAT_MCP_PASSWORD`, and `VRCHAT_MCP_TOTP_SECRET` are all set, an authenticated request that returns HTTP 401 triggers one automatic login with a locally generated TOTP code, and the original request is retried exactly once. Accounts that use email two-factor authentication are never logged in automatically.

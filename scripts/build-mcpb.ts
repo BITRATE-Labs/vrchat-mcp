@@ -253,7 +253,7 @@ async function writeZip(sourceDir: string, outputPath: string): Promise<void> {
 function repositoryUrl(pkg: PackageJson): string {
   return (
     pkg.repository?.url?.replace(/^git\+/, '').replace(/\.git$/, '') ??
-    'https://github.com/BASIC-BIT/vrchat-mcp'
+    'https://github.com/BITRATE-Labs/vrchat-mcp'
   );
 }
 
@@ -294,9 +294,9 @@ async function stageBundle(pkg: PackageJson): Promise<string> {
       type: 'git',
       url: repositoryUrl(pkg),
     },
-    homepage: pkg.homepage ?? 'https://github.com/BASIC-BIT/vrchat-mcp#readme',
-    documentation: 'https://github.com/BASIC-BIT/vrchat-mcp#readme',
-    support: 'https://github.com/BASIC-BIT/vrchat-mcp/issues',
+    homepage: pkg.homepage ?? 'https://github.com/BITRATE-Labs/vrchat-mcp#readme',
+    documentation: 'https://github.com/BITRATE-Labs/vrchat-mcp#readme',
+    support: 'https://github.com/BITRATE-Labs/vrchat-mcp/issues',
     server: {
       type: 'node',
       entry_point: 'server/dist/bin/cli.js',
@@ -309,7 +309,7 @@ async function stageBundle(pkg: PackageJson): Promise<string> {
     tools,
     keywords: ['vrchat', 'mcp', 'model-context-protocol', 'vrcx', 'gaming', 'social-vr'],
     license: pkg.license ?? 'MIT',
-    privacy_policies: ['https://github.com/BASIC-BIT/vrchat-mcp/blob/main/docs/privacy.md'],
+    privacy_policies: ['https://github.com/BITRATE-Labs/vrchat-mcp/blob/main/docs/privacy.md'],
     compatibility: {
       platforms: [process.platform],
       runtimes: {
