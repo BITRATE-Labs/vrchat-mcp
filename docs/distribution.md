@@ -8,7 +8,7 @@ This document tracks public discovery surfaces for VRChat MCP. Keep it updated w
 | --------------------- | ------ | ------------------------------------------------ | ---------------------------------------------------------------------- |
 | GitHub                | Live   | https://github.com/BITRATE-Labs/vrchat-mcp       | Canonical source, docs, issues, and releases. Moved from `BASIC-BIT` on 2026-11-03; old URLs redirect. |
 | npm                   | Live   | `@basicbit/vrchat-mcp`                           | Latest verified release: `0.1.15`. Name unchanged by the 2026-11-03 move. |
-| Official MCP Registry | Live   | `io.github.BITRATE-Labs/vrchat-mcp`              | No verified release yet; first publish is `0.1.16`. `io.github.BASIC-BIT/vrchat-mcp` remains live through `0.1.15` until it is deprecated. |
+| Official MCP Registry | Pending first publish | `io.github.BITRATE-Labs/vrchat-mcp` | No verified release yet; first publish is `0.1.16`. `io.github.BASIC-BIT/vrchat-mcp` remains live through `0.1.15` until it is deprecated. |
 | GitHub Releases       | Live   | https://github.com/BITRATE-Labs/vrchat-mcp/releases | Latest verified release: `v0.1.15`, published before the move.        |
 
 ## Directories and Marketplaces
