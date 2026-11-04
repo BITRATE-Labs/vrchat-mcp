@@ -7,15 +7,15 @@ This document tracks public discovery surfaces for VRChat MCP. Keep it updated w
 | Surface               | Status | URL / Identifier                                 | Notes                                                                  |
 | --------------------- | ------ | ------------------------------------------------ | ---------------------------------------------------------------------- |
 | GitHub                | Live   | https://github.com/BITRATE-Labs/vrchat-mcp       | Canonical source, docs, issues, and releases. Moved from `BASIC-BIT` on 2026-11-03; old URLs redirect. |
-| npm                   | Live   | `@basicbit/vrchat-mcp`                           | Latest verified release: `0.1.13`.                                      |
-| Official MCP Registry | Live   | `io.github.BITRATE-Labs/vrchat-mcp`              | New name from `0.1.16`. The old `io.github.BASIC-BIT/vrchat-mcp` entry is deprecated and points here. |
-| GitHub Releases       | Live   | https://github.com/BITRATE-Labs/vrchat-mcp/releases | Releases from `v0.1.16` publish from the new owner.                 |
+| npm                   | Live   | `@basicbit/vrchat-mcp`                           | Latest verified release: `0.1.15`. Name unchanged by the 2026-11-03 move. |
+| Official MCP Registry | Live   | `io.github.BITRATE-Labs/vrchat-mcp`              | No verified release yet; first publish is `0.1.16`. `io.github.BASIC-BIT/vrchat-mcp` remains live through `0.1.15` until it is deprecated. |
+| GitHub Releases       | Live   | https://github.com/BITRATE-Labs/vrchat-mcp/releases | Latest verified release: `v0.1.15`, published before the move.        |
 
 ## Directories and Marketplaces
 
 | Surface        | Status                         | URL / Identifier                           | Notes                                                                                                                                                                                                                      |
 | -------------- | ------------------------------ | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| MCP.so         | Live / submitted               | https://mcp.so/server/vrchat-mcp/BASIC-BIT | Listing created under `BASIC-BIT`; config uses `npx -y @basicbit/vrchat-mcp@latest`.                                                                                                                                       |
+| MCP.so         | Live / submitted               | https://mcp.so/server/vrchat-mcp/BASIC-BIT | Listing created under `BASIC-BIT`, not yet re-pointed after the 2026-11-03 move; config uses `npx -y @basicbit/vrchat-mcp@latest`.                                                                                                                                       |
 | mcpservers.org | Submitted                      | https://mcpservers.org/submit              | Submitted on 2026-05-19 with contact `basic@basicbit.net`; review page estimated within 12 hours.                                                                                                                          |
 | PulseMCP       | Auto-ingest expected           | https://www.pulsemcp.com/servers           | PulseMCP states it ingests from the Official MCP Registry daily and processes weekly. Check after a week.                                                                                                                  |
 | Glama          | Submitted / pending review     | https://glama.ai/mcp/servers               | Submitted through Add Server flow on 2026-05-19. Public submissions are reviewed before becoming visible.                                                                                                                  |
@@ -105,7 +105,7 @@ Replace the current `assets/logo.svg` before a broader marketing push. Known rep
 | ----------------------- | ------------------------------------------------------------------------------------------------------------- |
 | Repo                    | `assets/logo.svg`                                                                                             |
 | npm                     | Package tarball includes `assets/logo.svg` through `package.json` files.                                      |
-| MCP.so                  | Avatar URL currently points at `https://raw.githubusercontent.com/BASIC-BIT/vrchat-mcp/main/assets/logo.svg`. |
+| MCP.so                  | Avatar URL currently points at `https://raw.githubusercontent.com/BASIC-BIT/vrchat-mcp/main/assets/logo.svg`. It still served 200 after the move; switch it to the `BITRATE-Labs` path when the listing is re-pointed. |
 | mcpservers.org          | Check whether the listing caches repository artwork after approval.                                           |
 | Glama                   | Check whether the listing imports or caches repository artwork after approval.                                |
 | PulseMCP                | Check after auto-ingestion.                                                                                   |
