@@ -1,7 +1,7 @@
 {
   "name": "@basicbit/vrchat-mcp",
-  "version": "0.1.15",
-  "mcpName": "io.github.BASIC-BIT/vrchat-mcp",
+  "version": "0.1.16",
+  "mcpName": "io.github.BITRATE-Labs/vrchat-mcp",
   "description": "MCP server for VRChat friends, worlds, groups, events, notifications, and VRCX history.",
   "type": "module",
   "main": "dist/src/index.js",
@@ -78,12 +78,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BASIC-BIT/vrchat-mcp.git"
+    "url": "git+https://github.com/BITRATE-Labs/vrchat-mcp.git"
   },
   "bugs": {
-    "url": "https://github.com/BASIC-BIT/vrchat-mcp/issues"
+    "url": "https://github.com/BITRATE-Labs/vrchat-mcp/issues"
   },
-  "homepage": "https://github.com/BASIC-BIT/vrchat-mcp#readme",
+  "homepage": "https://github.com/BITRATE-Labs/vrchat-mcp#readme",
   "license": "MIT",
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^15.3.5",

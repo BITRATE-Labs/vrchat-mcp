@@ -34,7 +34,7 @@ The npm package is the normal install path:
 npx -y @basicbit/vrchat-mcp
 ```
 
-The server is also published to the official MCP Registry as `io.github.BASIC-BIT/vrchat-mcp`.
+The server is also published to the official MCP Registry as `io.github.BITRATE-Labs/vrchat-mcp`.
 
 ## MCP Client Config
 
@@ -347,7 +347,7 @@ See `src/config/defaults.json` for all defaults.
 ## Local Development
 
 ```bash
-git clone https://github.com/BASIC-BIT/vrchat-mcp.git
+git clone https://github.com/BITRATE-Labs/vrchat-mcp.git
 cd vrchat-mcp
 npm install
 npm run build
