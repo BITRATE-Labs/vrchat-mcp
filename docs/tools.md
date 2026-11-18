@@ -10079,7 +10079,7 @@ Generated write input schema:
   "required": [
     "operationId"
   ],
-  "additionalProperties": {}
+  "additionalProperties": false
 }
 ```
 
@@ -10219,7 +10219,7 @@ Generated delete input schema:
   "required": [
     "operationId"
   ],
-  "additionalProperties": {}
+  "additionalProperties": false
 }
 ```
 

@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const WriteOptionsSchema = z.object({
   includeMeta: z.boolean().describe('Include URL/status/headers.').optional(),
   options: z
-    .object({
+    .strictObject({
       dryRun: z.boolean().describe('Preview request.').optional(),
       rawResponse: z.boolean().describe('Return raw metadata.').optional(),
     })
@@ -18,7 +18,7 @@ export const GeneratedWriteToolInputSchema = z
     body: z.unknown().describe('OpenAPI request body.').optional(),
   })
   .merge(WriteOptionsSchema)
-  .passthrough();
+  .strict();
 
 export const WriteToolOutputSchema = z.object({
   data: z.any().optional(),

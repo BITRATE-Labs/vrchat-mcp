@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Generated write and delete tools reject unknown arguments and option keys. Put the preview flag under `options.dryRun`.
 - Closed tool inputs now reject unknown top-level arguments before running. Remove extra fields from calls that previously relied on them being ignored. Group post requests use `maxItems` to cap results.
 
 ## 0.1.16 - 2026-11-03

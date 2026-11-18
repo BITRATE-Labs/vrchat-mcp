@@ -10,7 +10,6 @@ vi.mock('../../src/tools/generated.js', () => {
 });
 
 import { GeneratedReadToolInputSchema } from '../../src/schemas/read.js';
-import { GeneratedWriteToolInputSchema } from '../../src/schemas/write.js';
 import { registerAllTools } from '../../src/tools/registerAllTools.js';
 import { registerRawTools } from '../../src/tools/raw.js';
 import { registerGeneratedTools } from '../../src/tools/generated.js';
@@ -22,9 +21,9 @@ describe('registerAllTools', () => {
 
     registerRawTools(server as unknown as McpServer);
 
-    for (const schema of [GeneratedReadToolInputSchema, GeneratedWriteToolInputSchema]) {
-      expect(schema.parse({ operationId: 'example', extra: true }).extra).toBe(true);
-    }
+    expect(GeneratedReadToolInputSchema.parse({ operationId: 'example', extra: true }).extra).toBe(
+      true
+    );
 
     const passthrough = new Set(['vrchat_event_create', 'vrchat_event_update']);
     for (const {
