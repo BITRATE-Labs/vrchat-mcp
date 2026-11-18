@@ -42,6 +42,7 @@ describe('registerAllTools', () => {
   });
 
   it('registers curated and read tools with expected names', async () => {
+    vi.mocked(registerGeneratedTools).mockClear();
     const server = new FakeServer();
     await registerAllTools(server as unknown as McpServer);
 
@@ -123,6 +124,6 @@ describe('registerAllTools', () => {
     expect(names).not.toContain('vrchat_call');
     expect(names).not.toContain('vrchat_group_image_upload');
 
-    expect(registerGeneratedTools).toHaveBeenCalledWith(server);
+    expect(registerGeneratedTools).toHaveBeenCalledExactlyOnceWith(server);
   });
 });
