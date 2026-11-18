@@ -23,7 +23,7 @@ export const StatusGetOutputSchema = z.object({
 });
 
 export const StatusSetInputSchema = z
-  .object({
+  .strictObject({
     status: StatusSchema.optional(),
     color: StatusColorSchema.optional(),
     description: z.string().optional(),

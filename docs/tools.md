@@ -7085,6 +7085,18 @@ Output schema:
 ### vrchat_status_get
 Get your current status + description (read-only). (read-only)
 
+Input schema:
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "default": {},
+  "type": "object",
+  "properties": {},
+  "additionalProperties": false
+}
+```
+
 Output schema:
 
 ```json
@@ -9612,6 +9624,18 @@ Output schema:
 ### vrchat_auth_begin
 Begin login flow via local browser UI. (write)
 
+Input schema:
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "default": {},
+  "type": "object",
+  "properties": {},
+  "additionalProperties": false
+}
+```
+
 Output schema:
 
 ```json
@@ -9633,6 +9657,18 @@ Output schema:
 ### vrchat_auth_logout
 Logout and clear session. (write)
 
+Input schema:
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "default": {},
+  "type": "object",
+  "properties": {},
+  "additionalProperties": false
+}
+```
+
 Output schema:
 
 ```json
@@ -9653,6 +9689,18 @@ Output schema:
 
 ### vrchat_auth_status
 Auth status. (read-only)
+
+Input schema:
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "default": {},
+  "type": "object",
+  "properties": {},
+  "additionalProperties": false
+}
+```
 
 Output schema:
 

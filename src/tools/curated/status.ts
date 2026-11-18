@@ -1,4 +1,5 @@
 import { type McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { z } from 'zod';
 import {
   StatusGetOutputSchema,
   StatusSetInputSchema,
@@ -14,6 +15,7 @@ export function registerCuratedStatusTools(server: McpServer): void {
     toolName('vrchat.status.get'),
     {
       description: 'Get your current status + description (read-only).',
+      inputSchema: z.strictObject({}).default({}),
       outputSchema: StatusGetOutputSchema,
       annotations: readOnlyToolAnnotations,
     },

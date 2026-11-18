@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { z } from 'zod';
 import { FakeServer } from '../helpers/fake-server.js';
 
 vi.mock('../../src/tools/generated.js', () => {
@@ -8,10 +9,38 @@ vi.mock('../../src/tools/generated.js', () => {
   };
 });
 
+import { GeneratedReadToolInputSchema } from '../../src/schemas/read.js';
+import { GeneratedWriteToolInputSchema } from '../../src/schemas/write.js';
 import { registerAllTools } from '../../src/tools/registerAllTools.js';
+import { registerRawTools } from '../../src/tools/raw.js';
 import { registerGeneratedTools } from '../../src/tools/generated.js';
 
 describe('registerAllTools', () => {
+  it('closes registered input schemas except explicit passthrough tools', async () => {
+    const server = new FakeServer();
+    await registerAllTools(server as unknown as McpServer);
+
+    registerRawTools(server as unknown as McpServer);
+
+    for (const schema of [GeneratedReadToolInputSchema, GeneratedWriteToolInputSchema]) {
+      expect(schema.parse({ operationId: 'example', extra: true }).extra).toBe(true);
+    }
+
+    const passthrough = new Set(['vrchat_event_create', 'vrchat_event_update']);
+    for (const {
+      name,
+      config: { inputSchema },
+    } of server.tools) {
+      expect(inputSchema, name).toBeInstanceOf(z.ZodType);
+      const schema = z.toJSONSchema(inputSchema as z.ZodType, { io: 'input' });
+      if (passthrough.has(name)) {
+        expect(schema.additionalProperties, name).not.toBe(false);
+      } else {
+        expect(schema.additionalProperties, name).toBe(false);
+      }
+    }
+  });
+
   it('registers curated and read tools with expected names', async () => {
     const server = new FakeServer();
     await registerAllTools(server as unknown as McpServer);
@@ -94,6 +123,6 @@ describe('registerAllTools', () => {
     expect(names).not.toContain('vrchat_call');
     expect(names).not.toContain('vrchat_group_image_upload');
 
-    expect(registerGeneratedTools).toHaveBeenCalledTimes(1);
+    expect(registerGeneratedTools).toHaveBeenCalledWith(server);
   });
 });

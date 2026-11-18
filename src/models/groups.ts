@@ -50,7 +50,7 @@ export const GroupPageSchema = z.object({
   truncated: z.boolean(),
 });
 
-export const GroupSearchInputSchema = z.object({
+export const GroupSearchInputSchema = z.strictObject({
   query: z.string(),
   pageSize: z.number().int().min(1).max(100).optional(),
   maxPages: z.number().int().min(1).max(100).optional(),
@@ -71,7 +71,7 @@ export const GroupSearchOutputSchema = z.object({
 export const GroupProfileInputSchema = GroupShapeSchema.extend({
   groupId: schemas.GroupID.optional(),
   shortCode: z.string().optional(),
-});
+}).strict();
 
 export const GroupProfileOutputSchema = z.object({
   groupId: schemas.GroupID,
@@ -79,7 +79,7 @@ export const GroupProfileOutputSchema = z.object({
   group: ApiObjectSchema,
 });
 
-export const GroupMembersInputSchema = z.object({
+export const GroupMembersInputSchema = z.strictObject({
   groupId: schemas.GroupID.describe('Exact group ID. Provide groupId or shortCode.').optional(),
   shortCode: z
     .string()
@@ -129,7 +129,7 @@ export const GroupRoleSummarySchema = z.object({
   isSelfAssignable: z.boolean().optional(),
 });
 
-export const GroupRolesInputSchema = z.object({
+export const GroupRolesInputSchema = z.strictObject({
   view: z.enum(['roles', 'templates']).default('roles'),
   groupId: schemas.GroupID.optional(),
   shortCode: z.string().optional(),
@@ -190,7 +190,7 @@ export const GroupRolesManageInputSchema = z.discriminatedUnion('action', [
 // discriminatedUnion publishes `properties: {}`, which strips typed fields like
 // `permissions` from the wire contract and makes clients send them as strings.
 // Advertise this flat superset, and keep the union above as the real validator.
-export const GroupRolesManageToolSchema = z.object({
+export const GroupRolesManageToolSchema = z.strictObject({
   action: z.enum([
     'assign_member_role',
     'remove_member_role',
@@ -241,7 +241,7 @@ export const GroupRolesManageOutputSchema = z.object({
   roles: z.array(GroupRoleSummarySchema).optional(),
 });
 
-export const GroupPostsRecentInputSchema = z.object({
+export const GroupPostsRecentInputSchema = z.strictObject({
   groupId: schemas.GroupID.optional(),
   shortCode: z.string().optional(),
   publicOnly: z.boolean().optional(),
@@ -292,7 +292,9 @@ const GroupPostTargetSchema = z.object({
     .optional(),
 });
 
-export const GroupPostCreateInputSchema = GroupPostBodySchema.extend(GroupPostTargetSchema.shape);
+export const GroupPostCreateInputSchema = GroupPostBodySchema.extend(
+  GroupPostTargetSchema.shape
+).strict();
 
 export const GroupPostUpdateInputSchema = GroupPostBodySchema.partial()
   .extend(GroupPostTargetSchema.shape)
@@ -313,11 +315,12 @@ export const GroupPostUpdateInputSchema = GroupPostBodySchema.partial()
       .describe(
         'Re-notify group members about the edit. Defaults to false so corrections stay quiet.'
       ),
-  });
+  })
+  .strict();
 
 export const GroupPostDeleteInputSchema = GroupPostTargetSchema.extend({
   postId: schemas.NotificationID.describe('Post ID to delete.'),
-});
+}).strict();
 
 export const GroupPostWriteOutputSchema = z.object({
   status: z.enum(['created', 'updated', 'deleted']),
@@ -335,7 +338,7 @@ export const GroupEventsListInputSchema = GroupShapeSchema.extend({
   pageSize: z.number().int().min(1).max(100).optional(),
   maxPages: z.number().int().min(1).max(100).optional(),
   maxItems: z.number().int().min(1).optional(),
-});
+}).strict();
 
 export const GroupEventsListOutputSchema = z.object({
   groupId: schemas.GroupID,
@@ -354,7 +357,7 @@ export const GroupEventGetInputSchema = GroupShapeSchema.extend({
   groupId: schemas.GroupID.optional(),
   shortCode: z.string().optional(),
   calendarId: schemas.CalendarID,
-});
+}).strict();
 
 export const GroupEventGetOutputSchema = z.object({
   groupId: schemas.GroupID,
@@ -366,7 +369,7 @@ export const GroupEventGetOutputSchema = z.object({
 export const GroupEventNextInputSchema = GroupShapeSchema.extend({
   groupId: schemas.GroupID.optional(),
   shortCode: z.string().optional(),
-});
+}).strict();
 
 export const GroupEventNextOutputSchema = z.object({
   groupId: schemas.GroupID,
@@ -382,7 +385,7 @@ export const GroupEventsUpcomingInputSchema = GroupShapeSchema.extend({
   pageSize: z.number().int().min(1).max(100).optional(),
   maxPages: z.number().int().min(1).max(100).optional(),
   maxItems: z.number().int().min(1).optional(),
-});
+}).strict();
 
 export const GroupEventsUpcomingOutputSchema = z.object({
   groupId: schemas.GroupID,
@@ -404,7 +407,7 @@ export const GroupEventsUpcomingOutputSchema = z.object({
   events: z.array(ApiObjectSchema),
 });
 
-export const GroupInstancesOverviewInputSchema = z.object({
+export const GroupInstancesOverviewInputSchema = z.strictObject({
   groupId: schemas.GroupID.optional(),
   shortCode: z.string().optional(),
   maxInstances: z.number().int().min(1).max(200).optional(),

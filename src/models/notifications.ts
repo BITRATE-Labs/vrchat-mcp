@@ -25,7 +25,7 @@ export const NotificationPageSchema = z.object({
   truncated: z.boolean(),
 });
 
-export const NotificationsRecentInputSchema = z.object({
+export const NotificationsRecentInputSchema = z.strictObject({
   type: z.string().optional(),
   unreadOnly: z.boolean().optional(),
   pageSize: z.number().int().min(1).max(100).optional(),

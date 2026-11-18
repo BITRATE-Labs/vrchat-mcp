@@ -17,7 +17,7 @@ export const CurrentUserProfileInputSchema = UserShapeSchema.extend({
   groupPageSize: z.number().int().min(1).max(100).optional(),
   groupMaxPages: z.number().int().min(1).max(50).optional(),
   groupOffset: z.number().int().min(0).optional(),
-});
+}).strict();
 
 export const DEFAULT_SELF_FIELDS = [
   'id',
@@ -83,7 +83,7 @@ export const UserProfileInputSchema = UserShapeSchema.extend({
   groupPageSize: z.number().int().min(1).max(100).optional(),
   groupMaxPages: z.number().int().min(1).max(50).optional(),
   groupOffset: z.number().int().min(0).optional(),
-});
+}).strict();
 
 export const VrcxMemoSchema = z.object({
   editedAt: z.string().nullable(),
@@ -118,7 +118,7 @@ export const ProfileUpdateOutputSchema = z.object({
   user: ApiObjectSchema,
 });
 
-export const UserGroupsInputSchema = z.object({
+export const UserGroupsInputSchema = z.strictObject({
   userId: schemas.UserID.optional(),
   username: z.string().optional(),
   pageSize: z.number().int().min(1).max(100).optional(),

@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { schemas } from '../generated/vrchat-schemas.js';
 import { ApiObjectSchema } from './common.js';
 
-export const InviteSelfSchema = z.object({
+export const InviteSelfSchema = z.strictObject({
   worldId: schemas.WorldID.optional(),
   instanceId: schemas.InstanceID.optional(),
   location: z.string().optional(),
@@ -13,7 +13,7 @@ export const InviteSelfOutputSchema = z.object({
   notification: ApiObjectSchema.optional(),
 });
 
-export const InviteUserSchema = z.object({
+export const InviteUserSchema = z.strictObject({
   userId: schemas.UserID,
   worldId: schemas.WorldID.optional().describe(
     'World of the target instance. Pair with instanceId.'
@@ -59,7 +59,7 @@ export const InviteUserOutputSchema = z.object({
   notification: ApiObjectSchema.optional(),
 });
 
-export const InviteUserToMeSchema = z.object({
+export const InviteUserToMeSchema = z.strictObject({
   userId: schemas.UserID,
   messageSlot: z.number().int().min(0).max(11).optional(),
 });
@@ -73,7 +73,7 @@ export const InviteUserToMeOutputSchema = z.object({
   notification: ApiObjectSchema.optional(),
 });
 
-export const BulkRetryInputSchema = z.object({
+export const BulkRetryInputSchema = z.strictObject({
   maxAttempts: z.number().int().min(1).max(8).optional(),
   baseDelayMs: z.number().int().min(0).max(60_000).optional(),
   maxDelayMs: z.number().int().min(0).max(120_000).optional(),
@@ -98,7 +98,7 @@ export const UnifiedInviteSchema = BulkUserTargetsSchema.merge(BulkWriteOptionsS
   self: z.boolean().optional(),
   message: z.string().min(1).optional(),
   overwriteMessageSlot: z.number().int().min(0).max(11).optional(),
-});
+}).strict();
 
 export const BulkTargetResultSchema = z.object({
   target: z.string(),
@@ -145,20 +145,20 @@ export const GroupInviteSchema = BulkUserTargetsSchema.merge(BulkWriteOptionsSch
   groupId: schemas.GroupID.optional(),
   shortCode: z.string().optional(),
   confirmOverrideBlock: z.boolean().default(false).optional(),
-});
+}).strict();
 
 export const GroupInviteOutputSchema = BulkWriteSummarySchema.extend({
   groupId: schemas.GroupID,
 });
 
-export const FriendRequestSchema = BulkUserTargetsSchema.merge(BulkWriteOptionsSchema);
+export const FriendRequestSchema = BulkUserTargetsSchema.merge(BulkWriteOptionsSchema).strict();
 export const FriendRequestOutputSchema = BulkWriteSummarySchema;
 
 export const BoopSchema = BulkUserTargetsSchema.merge(BulkWriteOptionsSchema).extend({
   emojiId: schemas.EmojiID.optional(),
   emojiVersion: z.number().int().optional(),
   inventoryItemId: schemas.InventoryItemID.optional(),
-});
+}).strict();
 
 export const BoopOutputSchema = BulkWriteSummarySchema;
 

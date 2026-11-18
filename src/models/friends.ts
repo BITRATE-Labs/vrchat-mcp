@@ -20,7 +20,7 @@ export const FriendListEntrySchema = z.object({
   last_platform: z.string().optional(),
 });
 
-export const FriendSearchInputSchema = z.object({
+export const FriendSearchInputSchema = z.strictObject({
   query: z.string(),
   maxResults: z.number().int().min(1).optional(),
   includeOffline: z.boolean().optional(),
@@ -55,7 +55,7 @@ export const FriendsSegmentSchema = z.object({
   page: FriendsPageSchema.optional(),
 });
 
-export const FriendsListInputSchema = z.object({
+export const FriendsListInputSchema = z.strictObject({
   includeOffline: z.boolean().optional(),
   pageSize: z.number().int().min(1).max(100).optional(),
   maxPages: z.number().int().min(1).max(500).optional(),
@@ -110,7 +110,7 @@ export const FriendOverviewLocationSchema = FriendLocationInfoSchema.extend({
   friends: z.array(FriendOverviewFriendSchema),
 });
 
-export const FriendsOverviewInputSchema = z.object({
+export const FriendsOverviewInputSchema = z.strictObject({
   includeOffline: z.boolean().optional(),
   status: FriendStatusFilterSchema.optional(),
   statusFilter: FriendStatusFilterSchema.optional(),
@@ -152,7 +152,7 @@ export const FriendsOverviewOutputSchema = z.object({
   segments: z.array(FriendsSegmentSchema),
 });
 
-export const FriendDetailsInputSchema = z.object({
+export const FriendDetailsInputSchema = z.strictObject({
   name: z.string().optional(),
   userId: schemas.UserID.optional(),
   includeOffline: z.boolean().optional(),

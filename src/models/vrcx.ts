@@ -9,7 +9,7 @@ export const VrcxPathInfoSchema = z.object({
   source: VrcxPathSourceSchema,
 });
 
-export const VrcxStatusInputSchema = z.object({});
+export const VrcxStatusInputSchema = z.strictObject({});
 
 export const VrcxStatusOutputSchema = z.object({
   enabled: z.boolean(),
@@ -26,7 +26,7 @@ export const VrcxStatusOutputSchema = z.object({
   warnings: z.array(z.string()).optional(),
 });
 
-export const VrcxUserMemoInputSchema = z.object({
+export const VrcxUserMemoInputSchema = z.strictObject({
   userId: schemas.UserID,
 });
 
@@ -36,7 +36,7 @@ export const VrcxUserMemoOutputSchema = z.object({
   memo: z.string().nullable(),
 });
 
-export const VrcxWorldMemoInputSchema = z.object({
+export const VrcxWorldMemoInputSchema = z.strictObject({
   worldId: schemas.WorldID,
 });
 
@@ -46,7 +46,7 @@ export const VrcxWorldMemoOutputSchema = z.object({
   memo: z.string().nullable(),
 });
 
-export const VrcxAvatarMemoInputSchema = z.object({
+export const VrcxAvatarMemoInputSchema = z.strictObject({
   avatarId: schemas.AvatarID,
 });
 
@@ -56,7 +56,7 @@ export const VrcxAvatarMemoOutputSchema = z.object({
   memo: z.string().nullable(),
 });
 
-export const VrcxRecentWorldVisitsInputSchema = z.object({
+export const VrcxRecentWorldVisitsInputSchema = z.strictObject({
   daysBack: z.number().int().min(1).max(365).optional(),
   limit: z.number().int().min(1).max(1000).optional(),
 });
@@ -82,7 +82,7 @@ export const VrcxRecentWorldVisitsOutputSchema = z.object({
   visits: z.array(VrcxWorldVisitSchema),
 });
 
-export const VrcxRecentInstanceSessionsInputSchema = z.object({
+export const VrcxRecentInstanceSessionsInputSchema = z.strictObject({
   daysBack: z.number().int().min(1).max(365).optional(),
   limit: z.number().int().min(1).max(1000).optional(),
 });
@@ -110,7 +110,7 @@ export const VrcxRecentInstanceSessionsOutputSchema = z.object({
   sessions: z.array(VrcxInstanceSessionSchema),
 });
 
-export const VrcxUserRelationshipSummaryInputSchema = z.object({
+export const VrcxUserRelationshipSummaryInputSchema = z.strictObject({
   userId: schemas.UserID.optional(),
   displayName: z.string().min(1).optional(),
 });
@@ -130,7 +130,7 @@ export const VrcxUserRelationshipSummaryOutputSchema = z.object({
   hasData: z.boolean(),
 });
 
-export const VrcxUserRelationshipSessionsInputSchema = z.object({
+export const VrcxUserRelationshipSessionsInputSchema = z.strictObject({
   userId: schemas.UserID.optional(),
   displayName: z.string().min(1).optional(),
   limit: z.number().int().min(1).max(500).optional(),

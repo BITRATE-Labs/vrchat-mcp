@@ -14,7 +14,7 @@ export const EventsUpcomingInputSchema = EventListShapeSchema.extend({
   pageSize: z.number().int().min(1).max(100).optional(),
   maxPages: z.number().int().min(1).max(20).optional(),
   maxItems: z.number().int().min(1).optional(),
-});
+}).strict();
 
 export const EventsPageSchema = z.object({
   pages: z.number().int().min(0),
@@ -48,7 +48,7 @@ export const EventsSearchInputSchema = EventListShapeSchema.extend({
   pageSize: z.number().int().min(1).max(100).optional(),
   maxPages: z.number().int().min(1).max(20).optional(),
   maxItems: z.number().int().min(1).optional(),
-});
+}).strict();
 
 export const EventsSearchOutputSchema = z.object({
   searchTerm: z.string(),
@@ -75,7 +75,7 @@ export const EventsDiscoverInputSchema = EventListShapeSchema.extend({
   pageSize: z.number().int().min(1).max(100).optional(),
   maxPages: z.number().int().min(1).max(20).optional(),
   maxItems: z.number().int().min(1).optional(),
-});
+}).strict();
 
 export const EventsCursorPageSchema = z.object({
   pages: z.number().int().min(0),
@@ -123,7 +123,7 @@ export const CalendarEventUpdateSchema = schemas.UpdateCalendarEventRequest.exte
     schemas.UpdateCalendarEventRequest.shape.sendCreationNotification.optional(),
 });
 
-export const CalendarEventDeleteSchema = z.object({
+export const CalendarEventDeleteSchema = z.strictObject({
   groupId: schemas.GroupID,
   calendarId: schemas.CalendarID,
   targetKind: CalendarEventTargetKindSchema.describe(
@@ -131,7 +131,7 @@ export const CalendarEventDeleteSchema = z.object({
   ),
 });
 
-export const CalendarEventFollowSchema = z.object({
+export const CalendarEventFollowSchema = z.strictObject({
   groupId: schemas.GroupID,
   calendarId: schemas.CalendarID,
   isFollowing: z.boolean(),
