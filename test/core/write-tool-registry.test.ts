@@ -1,3 +1,6 @@
+import { Client } from '@modelcontextprotocol/sdk/client/index.js';
+import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js';
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { z } from 'zod';
 
@@ -151,6 +154,49 @@ describe('write tool registry', () => {
   afterEach(() => {
     mockConfig.generatedReadTools = { enabled: true, operationIds: [] };
     mockConfig.generatedWriteTools = { enabled: true, operationIds: [] };
+  });
+
+  it.each([
+    ['vrchat_write', 'createWidget'],
+    ['vrchat_delete', 'deleteWidget'],
+  ])('validates the preview flag before running %s', async (name, operationId) => {
+    const { registerGeneratedWriteTools } = await import('../../src/core/writeToolRegistry.js');
+    const { callOperation } = await import('../../src/core/client.js');
+    const { GeneratedWriteToolOutputSchema, WriteOptionsSchema } =
+      await import('../../src/schemas/write.js');
+    const server = new McpServer({ name: 'test-server', version: '0' });
+    const client = new Client({ name: 'test-client', version: '0' });
+    const [clientTransport, serverTransport] = InMemoryTransport.createLinkedPair();
+    await registerGeneratedWriteTools(server, {
+      writeOptionsSchema: WriteOptionsSchema,
+      writeOutputSchema: GeneratedWriteToolOutputSchema,
+      respond: (result) => ({ content: [], structuredContent: { ...result } }),
+    });
+    const operation = vi
+      .mocked(callOperation)
+      .mockClear()
+      .mockResolvedValue({ url: 'test', dryRun: true });
+    const args = { operationId, params: { widgetId: 'example' }, body: { name: 'Widget' } };
+
+    try {
+      await server.connect(serverTransport);
+      await client.connect(clientTransport);
+      for (const invalid of [
+        { ...args, dryRun: true },
+        { ...args, options: { dryrun: true } },
+      ]) {
+        expect((await client.callTool({ name, arguments: invalid })).isError).toBe(true);
+        expect(operation).not.toHaveBeenCalled();
+      }
+
+      const request = { ...args, options: { dryRun: true } };
+      const preview = await client.callTool({ name, arguments: request });
+      expect(preview.structuredContent).toMatchObject({ dryRun: true });
+      expect(operation).toHaveBeenCalledExactlyOnceWith(request);
+    } finally {
+      await client.close();
+      await server.close();
+    }
   });
 
   it('registers only generated write gaps when no operation allowlist is set', async () => {
