@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { schemas } from '../generated/vrchat-schemas.js';
 
-export const InstanceCreateSchema = z.object({
+export const InstanceCreateSchema = z.strictObject({
   worldId: schemas.WorldID,
   type: schemas.InstanceType,
   region: schemas.InstanceRegion,
@@ -59,7 +59,7 @@ export const InstanceCreateOutputSchema = z.object({
   instance: InstanceSummarySchema.nullable().optional(),
 });
 
-export const InstanceLinkEventSchema = z.object({
+export const InstanceLinkEventSchema = z.strictObject({
   groupId: schemas.GroupID.describe('Owning group.'),
   calendarId: schemas.CalendarID.describe('Group event.'),
   worldId: schemas.WorldID.describe('Instance world.'),

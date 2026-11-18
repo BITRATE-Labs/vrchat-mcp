@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Closed tool inputs now reject unknown top-level arguments before running. Remove extra fields from calls that previously relied on them being ignored. Group post requests use `maxItems` to cap results.
+
 ## 0.1.16 - 2026-11-03
 
 - Move the repository to the `BITRATE-Labs` GitHub organization. Old `github.com/BASIC-BIT/vrchat-mcp` links redirect. The npm package name `@basicbit/vrchat-mcp` is unchanged.

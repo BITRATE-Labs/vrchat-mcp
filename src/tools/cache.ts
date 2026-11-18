@@ -10,7 +10,7 @@ export function registerCacheTools(server: McpServer): void {
     toolName('vrchat.cache.invalidate'),
     {
       description: 'Invalidate cached data (local-only).',
-      inputSchema: z.object({
+      inputSchema: z.strictObject({
         scope: z.enum(['all', 'area', 'key']).optional(),
         area: z.string().optional(),
         key: z.string().optional(),

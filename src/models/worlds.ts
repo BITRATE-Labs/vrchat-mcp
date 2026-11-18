@@ -40,7 +40,7 @@ export const WorldPageSchema = z.object({
   truncated: z.boolean(),
 });
 
-export const WorldSearchInputSchema = z.object({
+export const WorldSearchInputSchema = z.strictObject({
   query: z.string(),
   pageSize: z.number().int().min(1).max(100).optional(),
   maxPages: z.number().int().min(1).max(50).optional(),
@@ -58,7 +58,7 @@ export const WorldSearchInputSchema = z.object({
   includeTags: z.boolean().optional(),
 });
 
-export const WorldFavoritesInputSchema = z.object({
+export const WorldFavoritesInputSchema = z.strictObject({
   query: z.string().optional(),
   pageSize: z.number().int().min(1).max(100).optional(),
   maxPages: z.number().int().min(1).max(50).optional(),
@@ -80,9 +80,9 @@ export const WorldFavoritesInputSchema = z.object({
 export const WorldProfileInputSchema = WorldShapeSchema.extend({
   worldId: schemas.WorldID.optional(),
   name: z.string().optional(),
-});
+}).strict();
 
-export const WorldInstancesInputSchema = z.object({
+export const WorldInstancesInputSchema = z.strictObject({
   worldId: schemas.WorldID.optional(),
   name: z.string().optional(),
 });

@@ -10,7 +10,7 @@ export const AvatarShapeSchema = z.object({
 
 export const AvatarProfileInputSchema = AvatarShapeSchema.extend({
   avatarId: schemas.AvatarID,
-});
+}).strict();
 
 export const AvatarProfileOutputSchema = z.object({
   avatarId: schemas.AvatarID,
@@ -37,7 +37,7 @@ export const AVATAR_CONTENT_TAGS = [
 ] as const;
 
 export const AvatarUpdateInputSchema = z
-  .object({
+  .strictObject({
     // Matches the `user` convention on vrchat_boop / vrchat_friend_request: a human-readable
     // name is first-class, the ID is there for precision and for disambiguation.
     avatar: z

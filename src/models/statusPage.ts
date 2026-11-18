@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const StatusPageOverviewInputSchema = z.object({
+export const StatusPageOverviewInputSchema = z.strictObject({
   recentHours: z.number().int().min(1).max(720).optional(),
   maxItems: z.number().int().min(1).max(20).optional(),
   includeGraphs: z.boolean().optional(),

@@ -11,11 +11,11 @@ import { toolName } from '../../utils/toolNames.js';
 import { textContent, toolError } from '../../utils/toolResponses.js';
 import { registerReadTool } from './common.js';
 
-const OperationDetailsInputSchema = z.object({
+const OperationDetailsInputSchema = z.strictObject({
   operationId: z.string().describe('VRChat OpenAPI operationId.'),
 });
 
-const OperationsInputSchema = z.object({
+const OperationsInputSchema = z.strictObject({
   kind: z.enum(['read', 'write', 'delete']).describe('Operation kind.').optional(),
   view: z.enum(['available', 'all']).describe('Show available generated ops or all ops.').optional(),
   query: z.string().describe('Filter operationId, path, summary, or description.').optional(),
@@ -78,7 +78,7 @@ export function registerSystemReadTools(server: McpServer): void {
     name: 'vrchat.config.get',
     description: 'Fetch API config (read-only).',
     operationId: 'getConfig',
-    inputSchema: ReadOptionsSchema,
+    inputSchema: ReadOptionsSchema.strict(),
   });
 
   registerReadTool({
@@ -86,7 +86,7 @@ export function registerSystemReadTools(server: McpServer): void {
     name: 'vrchat.system.time',
     description: 'Get current system time (read-only).',
     operationId: 'getSystemTime',
-    inputSchema: ReadOptionsSchema,
+    inputSchema: ReadOptionsSchema.strict(),
   });
 
   server.registerTool(

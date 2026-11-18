@@ -11,6 +11,7 @@ export function registerAuthTools(server: McpServer): void {
     toolName('vrchat.auth.begin'),
     {
       description: 'Begin login flow via local browser UI.',
+      inputSchema: z.strictObject({}).default({}),
       outputSchema: z.object({ url: z.string() }),
       annotations: writeToolAnnotations,
     },
@@ -27,6 +28,7 @@ export function registerAuthTools(server: McpServer): void {
     toolName('vrchat.auth.status'),
     {
       description: 'Auth status.',
+      inputSchema: z.strictObject({}).default({}),
       outputSchema: AuthStatusSchema,
       annotations: readOnlyToolAnnotations,
     },
@@ -43,6 +45,7 @@ export function registerAuthTools(server: McpServer): void {
     toolName('vrchat.auth.logout'),
     {
       description: 'Logout and clear session.',
+      inputSchema: z.strictObject({}).default({}),
       outputSchema: AuthStatusSchema,
       annotations: writeToolAnnotations,
     },
